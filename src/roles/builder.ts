@@ -1,6 +1,8 @@
-export class Builder {
+export class BuilderController {
+
+    constructor() { }
     /** @param {Creep} creep **/
-    static run(creep: Creep): void {
+    run(creep: Creep): void {
 
         if (creep.memory.building && creep.store[RESOURCE_ENERGY] == 0) {
             creep.memory.building = false;
@@ -25,5 +27,12 @@ export class Builder {
                 creep.moveTo(sources[0], { visualizePathStyle: { stroke: '#ffaa00' } });
             }
         }
+    }
+
+    spawn() {
+        var newName = 'builder' + Game.time;
+        console.log('Spawning new builder: ' + newName);
+        Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE], newName,
+            { memory: { role: 'builder' } });
     }
 }

@@ -1,31 +1,26 @@
-import { SpawnHandler } from './memory/spawn.handler';
-import { Builder } from './roles/builder';
-import { Upgrader } from './roles/upgrader';
-import { Harvester } from './roles/harvester';
+import { WorkController } from './controllers/work.controller';
 import { ErrorMapper } from "utils/ErrorMapper";
+import { PopulationController } from './controllers/population.controller';
+import { HelperFunctions } from './utils/HelperFunctions';
+
+const TARGET_POPULATION = {
+    harvester: 2,
+    builder: 2,
+    upgrader: 3
+}
+
+const populationController = new PopulationController(TARGET_POPULATION);
 
 // When compiling TS to JS and bundling with rollup, the line numbers and file names in error messages change
 // This utility uses source maps to get the line numbers and file names of the original, TS source code
 export const loop = ErrorMapper.wrapLoop(() => {
   console.log(`Current game tick is ${Game.time}`);
 
-  // Automatically delete memory of missing creeps
-  for (const name in Memory.creeps) {
-    if (!(name in Game.creeps)) {
-      delete Memory.creeps[name];
-    }
-    var creep = Game.creeps[name];
-    if(creep.memory.role == 'harvester') {
-      Harvester.run(creep);
-    }
-    if(creep.memory.role == 'upgrader') {
-        Upgrader.run(creep);
-    }
-    if(creep.memory.role == 'builder') {
-        Builder.run(creep);
-    }
-  }
 
-  SpawnHandler.controlAndSpawn();
+  HelperFunctions.garbageCollection();
 
+  populationController.spawnCreep();
+
+  const workController = new WorkController(Game.creeps)
+  workController.run()
 });
