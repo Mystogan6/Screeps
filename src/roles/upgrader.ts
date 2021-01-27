@@ -1,6 +1,9 @@
-export class Upgrader {
+export class UpgraderController {
+
+    constructor() { }
+
     /** @param {Creep} creep **/
-    static run(creep: Creep): void {
+    run(creep: Creep): void {
 
         if (creep.memory.upgrading && creep.store[RESOURCE_ENERGY] == 0) {
             creep.memory.upgrading = false;
@@ -22,5 +25,12 @@ export class Upgrader {
                 creep.moveTo(sources[1], { visualizePathStyle: { stroke: '#ffaa00' } });
             }
         }
+    }
+
+    spawn() {
+        var newName = 'upgrader' + Game.time;
+        console.log('Spawning new upgrader: ' + newName);
+        Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE], newName,
+            { memory: { role: 'upgrader' } });
     }
 }

@@ -1,6 +1,9 @@
-export class Harvester {
+export class HarvesterController {
+
+    constructor() { }
+
     /** @param {Creep} creep **/
-    static run = function (creep: Creep): void {
+    run(creep: Creep): void {
         if (creep.store.getFreeCapacity() > 0) {
             var sources = creep.room.find(FIND_SOURCES);
             if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
@@ -12,5 +15,12 @@ export class Harvester {
                 creep.moveTo(Game.spawns['Spawn1']);
             }
         }
+    }
+
+    spawn() {
+        var newName = 'harvester' + Game.time;
+        console.log('Spawning new harvester: ' + newName);
+        Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE], newName,
+            { memory: { role: 'harvester' } });
     }
 }
