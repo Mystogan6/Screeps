@@ -9,20 +9,18 @@ export class BodyFactory {
     generateBodyParts(role: any): any {
         let result: any;
         switch (role) {
-            case 'harvester':
-            case 'builder':
-            case 'upgrader':
-            case 'maintainer':
+            case 'worker':
+                result = this.generateWorkerBody();
+            case 'defend':
+                result = this.generateMillitaryBody();
             default:
                 result = this.generateWorkerBody();
-            case 'defender':
-                result = this.generateMillitaryBody();
         }
         return result;
     }
 
     private generateWorkerBody() {
-        switch(this.level) {
+        switch (this.level) {
             case 1:
             default:
                 return [WORK, CARRY, MOVE];
@@ -42,7 +40,7 @@ export class BodyFactory {
     }
 
     private generateMillitaryBody() {
-        switch(this.level) {
+        switch (this.level) {
             case 1:
             default:
                 return [TOUGH, ATTACK, MOVE];

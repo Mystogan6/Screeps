@@ -7,21 +7,9 @@ import { HarvesterController } from './../roles/harvester';
 export class PopulationController {
 
     private _targetPopulation: any;
-    harvesterController: HarvesterController;
-    builderController: BuilderController;
-    upgraderController: UpgraderController;
-    maintainerController: MaintainerController;
-    defenderController: DefenderController;
-    bodyFactory: BodyFactory;
 
     constructor(targetPopulation: any) {
         this._targetPopulation = targetPopulation;
-        this.harvesterController = new HarvesterController();
-        this.builderController = new BuilderController();
-        this.upgraderController = new UpgraderController();
-        this.maintainerController = new MaintainerController();
-        this.defenderController = new DefenderController();
-        this.bodyFactory = new BodyFactory(targetPopulation.level);
     }
 
     roleTargetReached(role: string): boolean {
@@ -30,23 +18,47 @@ export class PopulationController {
         return creeps.length >= this._targetPopulation[role];
     }
 
-    spawnCreep(): void {
-        if (!this.roleTargetReached('harvester')) {
-            const body = this.bodyFactory.generateBodyParts('harvester')
-            this.harvesterController.spawn(body);
-        } if (!this.roleTargetReached('builder')) {
-            const body = this.bodyFactory.generateBodyParts('builder')
-            this.builderController.spawn(body);
-        } if (!this.roleTargetReached('upgrader')) {
-            const body = this.bodyFactory.generateBodyParts('upgrader')
-            this.upgraderController.spawn(body);
-        } if (!this.roleTargetReached('maintainer')) {
-            const body = this.bodyFactory.generateBodyParts('maintainer')
-            this.maintainerController.spawn(body);
-        } if (!this.roleTargetReached('defender')) {
-            const body = this.bodyFactory.generateBodyParts('defender')
-            this.defenderController.spawn(body);
+    controlPopulation(): void {
+        const spawnList = this.creepsToSpawn();
+        if (spawnList.length) {
+            this.spawnCreeps(spawnList);
         }
+    }
+
+    private creepsToSpawn() {
+        const popToSpawn: any = [];
+        for (const name in this._targetPopulation) {
+            const creeps = _.filter(Game.creeps, (creep) => creep.memory.role == name);
+            if (creeps.length < this._targetPopulation[name]) {
+                const creepToSpawn = { role: name };
+                popToSpawn.push(creepToSpawn)
+            }
+        }
+        return popToSpawn;
+    }
+
+    private spawnCreeps(creeps: Array<any>) {
+        creeps.forEach(creep => {
+            const bodyFactory = new BodyFactory(6);
+            let workerBody = bodyFactory.generateBodyParts('worker');
+            if(creep.role === 'harvester') {
+                const harvesterController = new HarvesterController();
+                harvesterController.spawn(workerBody);
+            } if(creep.role === 'builder') {
+                const builderController = new BuilderController();
+                builderController.spawn(workerBody);
+            } if(creep.role === 'upgrader') {
+                const upgraderController = new UpgraderController();
+                upgraderController.spawn(workerBody);
+            } if(creep.role === 'maintainer') {
+                const maintainerController = new MaintainerController();
+                maintainerController.spawn(workerBody);
+            } if(creep.role === 'defender') {
+                const defendBody = bodyFactory.generateBodyParts('defend')
+                const defenderController = new DefenderController();
+                defenderController.spawn(defendBody);
+            }
+        });
     }
 
 }
