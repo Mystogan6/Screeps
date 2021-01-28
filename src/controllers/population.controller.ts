@@ -1,3 +1,4 @@
+import { BodyFactory } from './../utils/BodyFactory';
 import { DefenderController } from './../roles/defender';
 import { MaintainerController } from './../roles/maintainer';
 import { UpgraderController } from './../roles/upgrader';
@@ -11,6 +12,7 @@ export class PopulationController {
     upgraderController: UpgraderController;
     maintainerController: MaintainerController;
     defenderController: DefenderController;
+    bodyFactory: BodyFactory;
 
     constructor(targetPopulation: any) {
         this._targetPopulation = targetPopulation;
@@ -19,6 +21,7 @@ export class PopulationController {
         this.upgraderController = new UpgraderController();
         this.maintainerController = new MaintainerController();
         this.defenderController = new DefenderController();
+        this.bodyFactory = new BodyFactory(targetPopulation.level);
     }
 
     roleTargetReached(role: string): boolean {
@@ -28,11 +31,22 @@ export class PopulationController {
     }
 
     spawnCreep(): void {
-        if (!this.roleTargetReached('harvester')) this.harvesterController.spawn();
-        if (!this.roleTargetReached('builder')) this.builderController.spawn();
-        if (!this.roleTargetReached('upgrader')) this.upgraderController.spawn();
-        if (!this.roleTargetReached('maintainer')) this.maintainerController.spawn();
-        if (!this.roleTargetReached('defender')) this.defenderController.spawn();
+        if (!this.roleTargetReached('harvester')) {
+            const body = this.bodyFactory.generateBodyParts('harvester')
+            this.harvesterController.spawn(body);
+        } if (!this.roleTargetReached('builder')) {
+            const body = this.bodyFactory.generateBodyParts('builder')
+            this.builderController.spawn(body);
+        } if (!this.roleTargetReached('upgrader')) {
+            const body = this.bodyFactory.generateBodyParts('upgrader')
+            this.upgraderController.spawn(body);
+        } if (!this.roleTargetReached('maintainer')) {
+            const body = this.bodyFactory.generateBodyParts('maintainer')
+            this.maintainerController.spawn(body);
+        } if (!this.roleTargetReached('defender')) {
+            const body = this.bodyFactory.generateBodyParts('defender')
+            this.defenderController.spawn(body);
+        }
     }
 
 }

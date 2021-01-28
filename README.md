@@ -13,3 +13,6 @@
     * Builder : Collects energy, build constructions (if no construction, maintain structures)
     * Maintainer : Collects energy, maintain structures
 
+### V 1.0.1
+
+- Addition of body factory, allowing to spawn creeps in accordance with base capacity

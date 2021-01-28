@@ -27,10 +27,10 @@ export class UpgraderController {
         }
     }
 
-    spawn() {
+    spawn(body: any) {
         var newName = 'upgrader' + Game.time;
         console.log('Spawning new upgrader: ' + newName);
-        Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE], newName,
+        Game.spawns['Spawn1'].spawnCreep(body, newName,
             { memory: { role: 'upgrader' } });
     }
 }

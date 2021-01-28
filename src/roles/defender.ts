@@ -18,10 +18,10 @@ export class DefenderController {
         }
     }
 
-    spawn() {
+    spawn(body: any) {
         var newName = 'Defender' + Game.time;
         console.log('Spawning new defender: ' + newName);
-        Game.spawns['Spawn1'].spawnCreep([TOUGH, ATTACK, MOVE], newName,
+        Game.spawns['Spawn1'].spawnCreep(body, newName,
             { memory: { role: 'defender' } });
     }
 }
