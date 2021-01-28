@@ -4,9 +4,11 @@ import { PopulationController } from './controllers/population.controller';
 import { HelperFunctions } from './utils/HelperFunctions';
 
 const TARGET_POPULATION = {
-    harvester: 2,
-    builder: 2,
-    upgrader: 3
+    harvester: 3,
+    builder: 1,
+    upgrader: 1,
+    maintainer: 2,
+    defender: 1
 }
 
 const populationController = new PopulationController(TARGET_POPULATION);
@@ -15,7 +17,6 @@ const populationController = new PopulationController(TARGET_POPULATION);
 // This utility uses source maps to get the line numbers and file names of the original, TS source code
 export const loop = ErrorMapper.wrapLoop(() => {
   console.log(`Current game tick is ${Game.time}`);
-
 
   HelperFunctions.garbageCollection();
 
