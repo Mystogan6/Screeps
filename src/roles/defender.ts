@@ -9,7 +9,7 @@ export class DefenderController {
             if (targets.length) {
                 creep.memory.target = targets[HelperFunctions.randomNumber(targets.length)];
             }
-            creep.moveTo(16, 43, { visualizePathStyle: { stroke: '#ffffff' } })
+            creep.moveTo(34, 25, { visualizePathStyle: { stroke: '#ffffff' } })
         }
         if (creep.memory.target) {
             var username = creep.memory.target.owner.username;
