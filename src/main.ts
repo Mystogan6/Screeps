@@ -8,8 +8,7 @@ const TARGET_POPULATION = {
     builder: 2,
     upgrader: 1,
     maintainer: 0,
-    defender: 1,
-    level: 5
+    defender: 1
 }
 
 const populationController = new PopulationController(TARGET_POPULATION);
@@ -21,7 +20,7 @@ export const loop = ErrorMapper.wrapLoop(() => {
 
   HelperFunctions.garbageCollection();
 
-  populationController.spawnCreep();
+  populationController.controlPopulation();
 
   const workController = new WorkController(Game.creeps)
   workController.run()

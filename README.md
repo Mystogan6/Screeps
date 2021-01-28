@@ -16,3 +16,7 @@
 ### V 1.0.1
 
 - Addition of body factory, allowing to spawn creeps in accordance with base capacity
+
+### V 1.0.2
+
+- Small refactoring of popullation controller and body factory to enhance performances and reduce loaded things each tick.
