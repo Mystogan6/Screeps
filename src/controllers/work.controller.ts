@@ -1,3 +1,5 @@
+import { DefenderController } from './../roles/defender';
+import { MaintainerController } from './../roles/maintainer';
 import { UpgraderController } from './../roles/upgrader';
 import { BuilderController } from './../roles/builder';
 import { HarvesterController } from './../roles/harvester';
@@ -7,13 +9,16 @@ export class WorkController {
     harvesterController: HarvesterController;
     builderController: BuilderController;
     upgraderController: UpgraderController;
+    maintainerController: MaintainerController;
+    defenderController: DefenderController;
 
     constructor(creeps: any) {
         this._creeps = creeps;
-
         this.harvesterController = new HarvesterController();
         this.builderController = new BuilderController();
         this.upgraderController = new UpgraderController();
+        this.maintainerController = new MaintainerController();
+        this.defenderController = new DefenderController();
     }
 
     run() {
@@ -29,6 +34,10 @@ export class WorkController {
                 case 'upgrader':
                     this.upgraderController.run(creep)
                     break;
+                case 'maintainer':
+                    this.maintainerController.run(creep);
+                case 'defender':
+                    this.defenderController.run(creep);
                 default:
                     break;
             }

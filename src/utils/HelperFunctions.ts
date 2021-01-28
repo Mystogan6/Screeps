@@ -22,4 +22,8 @@ export class HelperFunctions {
             target[n] = source[n];
         }
     }
+
+    public static randomNumber(x: number): number {
+        return Math.floor((Math.random() * 1000) % x);
+    }
 }

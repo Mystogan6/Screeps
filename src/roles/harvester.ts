@@ -1,6 +1,8 @@
+import { HelperFunctions } from './../utils/HelperFunctions';
 export class HarvesterController {
 
-    constructor() { }
+    constructor() {
+    }
 
     /** @param {Creep} creep **/
     run(creep: Creep): void {
@@ -11,8 +13,28 @@ export class HarvesterController {
             }
         }
         else {
-            if (creep.transfer(Game.spawns['Spawn1'], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(Game.spawns['Spawn1']);
+            const targets = creep.room.find(FIND_STRUCTURES, {
+                filter: (structure) => {
+                    return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) &&
+                        structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
+                }
+            });
+            if(targets.length > 0) {
+                if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
+                }
+            } else {
+                const targets = creep.room.find(FIND_MY_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_RAMPART) || (structure.structureType == STRUCTURE_TOWER &&
+                            structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0);
+                    }
+                });
+                if (targets.length) {
+                    if (creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(targets[0], { visualizePathStyle: { stroke: '#ffffff' } });
+                    }
+                }
             }
         }
     }
@@ -23,4 +45,5 @@ export class HarvesterController {
         Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE], newName,
             { memory: { role: 'harvester' } });
     }
+
 }
