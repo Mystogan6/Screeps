@@ -38,9 +38,12 @@ export class PopulationController {
     }
 
     private spawnCreeps(creeps: Array<any>) {
+
+        const bodyFactory = new BodyFactory(6);
+        const workerBody = bodyFactory.generateBodyParts('worker');
+        const defendBody = bodyFactory.generateBodyParts('defend')
+
         creeps.forEach(creep => {
-            const bodyFactory = new BodyFactory(6);
-            let workerBody = bodyFactory.generateBodyParts('worker');
             if(creep.role === 'harvester') {
                 const harvesterController = new HarvesterController();
                 harvesterController.spawn(workerBody);
@@ -54,7 +57,6 @@ export class PopulationController {
                 const maintainerController = new MaintainerController();
                 maintainerController.spawn(workerBody);
             } if(creep.role === 'defender') {
-                const defendBody = bodyFactory.generateBodyParts('defend')
                 const defenderController = new DefenderController();
                 defenderController.spawn(defendBody);
             }
