@@ -34,10 +34,10 @@ export class MaintainerController {
         }
     }
 
-    spawn() {
+    spawn(body: any) {
         var newName = 'maintainer' + Game.time;
         console.log('Spawning new maintainer: ' + newName);
-        Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE], newName,
+        Game.spawns['Spawn1'].spawnCreep(body, newName,
             { memory: { role: 'maintainer' } });
     }
 }

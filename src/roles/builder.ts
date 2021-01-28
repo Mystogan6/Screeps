@@ -20,9 +20,9 @@ export class BuilderController {
                     creep.moveTo(targets[0], { visualizePathStyle: { stroke: '#ffffff' } });
                 }
             } else {
-                const targets = creep.room.find(FIND_MY_STRUCTURES, {
+                const targets = creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_RAMPART) || (structure.structureType == STRUCTURE_TOWER &&
+                        return (structure.structureType == STRUCTURE_RAMPART) || (structure.structureType == STRUCTURE_WALL && structure.hits !== structure.hitsMax) || (structure.structureType == STRUCTURE_TOWER &&
                             structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0);
                     }
                 });
@@ -35,16 +35,16 @@ export class BuilderController {
         }
         else {
             var sources = creep.room.find(FIND_SOURCES);
-            if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[0], { visualizePathStyle: { stroke: '#ffaa00' } });
+            if (creep.harvest(sources[1]) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(sources[1], { visualizePathStyle: { stroke: '#ffaa00' } });
             }
         }
     }
 
-    spawn() {
+    spawn(body: any) {
         var newName = 'builder' + Game.time;
         console.log('Spawning new builder: ' + newName);
-        Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE], newName,
+        Game.spawns['Spawn1'].spawnCreep(body, newName,
             { memory: { role: 'builder' } });
     }
 }
