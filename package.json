@@ -1,6 +1,6 @@
 {
   "name": "screeps-typescript-starter",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "watch-pserver": "rollup -cw --environment DEST:pserver",
     "watch-season": "rollup -cw --environment DEST:season",
     "watch-sim": "rollup -cw --environment DEST:sim",
-    "serve": "npm run push-pserver"
+    "serve": "npm run push-main"
   },
   "repository": {
     "type": "git",
