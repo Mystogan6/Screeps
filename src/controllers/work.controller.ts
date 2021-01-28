@@ -4,7 +4,6 @@ import { UpgraderController } from './../roles/upgrader';
 import { BuilderController } from './../roles/builder';
 import { HarvesterController } from './../roles/harvester';
 export class WorkController {
-    private _creeps: any;
 
     harvesterController: HarvesterController;
     builderController: BuilderController;
@@ -12,8 +11,7 @@ export class WorkController {
     maintainerController: MaintainerController;
     defenderController: DefenderController;
 
-    constructor(creeps: any) {
-        this._creeps = creeps;
+    constructor() {
         this.harvesterController = new HarvesterController();
         this.builderController = new BuilderController();
         this.upgraderController = new UpgraderController();

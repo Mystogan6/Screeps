@@ -5,13 +5,14 @@ import { HelperFunctions } from './utils/HelperFunctions';
 
 const TARGET_POPULATION = {
     harvester: 2,
-    builder: 2,
+    builder: 0,
     upgrader: 1,
     maintainer: 0,
-    defender: 1
+    defender: 0
 }
 
 const populationController = new PopulationController(TARGET_POPULATION);
+const workController = new WorkController();
 
 // When compiling TS to JS and bundling with rollup, the line numbers and file names in error messages change
 // This utility uses source maps to get the line numbers and file names of the original, TS source code
@@ -22,6 +23,6 @@ export const loop = ErrorMapper.wrapLoop(() => {
 
   populationController.controlPopulation();
 
-  const workController = new WorkController(Game.creeps)
   workController.run()
+
 });

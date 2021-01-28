@@ -3,20 +3,19 @@ export class BodyFactory {
     private level: any;
 
     constructor(level: any) {
-        this.level = level;
+        this.level = 1;
     }
 
     generateBodyParts(role: any): any {
         let result: any;
         switch (role) {
             case 'worker':
-                result = this.generateWorkerBody();
+               return result = this.generateWorkerBody();
             case 'defend':
-                result = this.generateMillitaryBody();
+               return result = this.generateMillitaryBody();
             default:
-                result = this.generateWorkerBody();
+                return result = this.generateWorkerBody();
         }
-        return result;
     }
 
     private generateWorkerBody() {

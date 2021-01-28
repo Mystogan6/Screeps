@@ -12,12 +12,6 @@ export class PopulationController {
         this._targetPopulation = targetPopulation;
     }
 
-    roleTargetReached(role: string): boolean {
-        const creeps = _.filter(Game.creeps, (creep) => creep.memory.role == role);
-
-        return creeps.length >= this._targetPopulation[role];
-    }
-
     controlPopulation(): void {
         const spawnList = this.creepsToSpawn();
         if (spawnList.length) {
@@ -39,7 +33,7 @@ export class PopulationController {
 
     private spawnCreeps(creeps: Array<any>) {
 
-        const bodyFactory = new BodyFactory(6);
+        const bodyFactory = new BodyFactory(1);
         const workerBody = bodyFactory.generateBodyParts('worker');
         const defendBody = bodyFactory.generateBodyParts('defend')
 

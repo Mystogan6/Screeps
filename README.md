@@ -20,3 +20,7 @@
 ### V 1.0.2
 
 - Small refactoring of popullation controller and body factory to enhance performances and reduce loaded things each tick.
+
+### V 1.1.0
+
+- Ready for live server deployment
