@@ -13,6 +13,8 @@ export class BodyFactory {
                return result = this.generateWorkerBody();
             case 'defend':
                return result = this.generateMillitaryBody();
+            case 'attack':
+                return result = this.generateAttackerBody();
             default:
                 return result = this.generateWorkerBody();
         }
@@ -46,7 +48,27 @@ export class BodyFactory {
             case 2:
                 return [TOUGH, TOUGH, ATTACK, MOVE];
             case 3:
-                return [TOUGH, ATTACK, ATTACK, ATTACK, MOVE, MOVE, MOVE];
+                return [TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, ATTACK, MOVE, MOVE, MOVE];
+            case 4:
+                return [TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, MOVE];
+            case 5:
+                return [TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, ATTACK, MOVE];
+            case 6:
+                return [TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, ATTACK, MOVE, MOVE];
+            case 7:
+                return [TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, ATTACK, MOVE, MOVE, MOVE];
+        }
+    }
+
+    private generateAttackerBody() {
+        switch (this.level) {
+            case 1:
+            default:
+                return [TOUGH, ATTACK, MOVE];
+            case 2:
+                return [TOUGH, TOUGH, ATTACK, MOVE];
+            case 3:
+                return [MOVE, MOVE, MOVE, ATTACK, ATTACK, TOUGH, TOUGH, TOUGH, TOUGH];
             case 4:
                 return [TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, MOVE];
             case 5:

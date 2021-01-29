@@ -9,7 +9,7 @@ export class HarvesterController {
         if (creep.store.getFreeCapacity() > 0) {
             var sources = creep.room.find(FIND_SOURCES);
             if (creep.harvest(sources[1]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[1], { visualizePathStyle: { stroke: '#ffffff' } });
+                creep.moveTo(sources[1], { visualizePathStyle: { stroke: '#ffaa00' } });
             }
         }
         else {
@@ -35,7 +35,7 @@ export class HarvesterController {
                         creep.moveTo(targets[0], { visualizePathStyle: { stroke: '#ffffff' } });
                     }
                 } else {
-                    creep.moveTo(15,30);
+                    creep.moveTo(33,13, { visualizePathStyle: { stroke: '#0000ff' } });
                 }
             }
         }
@@ -44,7 +44,7 @@ export class HarvesterController {
     spawn(body: any) {
         var newName = 'harvester' + Game.time;
         console.log('Spawning new harvester: ' + newName);
-        Game.spawns['Spawn1'].spawnCreep(body, newName,
+        Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, CARRY, MOVE, MOVE, MOVE], newName,
             { memory: { role: 'harvester' } });
     }
 

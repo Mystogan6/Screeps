@@ -1,20 +1,20 @@
 import { HelperFunctions } from './../utils/HelperFunctions';
 export class DefenderController {
 
+
     constructor() { }
     /** @param {Creep} creep **/
     run(creep: Creep): void {
-        if (!creep.memory.target) {
-            var targets = creep.room.find(FIND_HOSTILE_CREEPS);
-            if (targets.length) {
-                creep.memory.target = targets[HelperFunctions.randomNumber(targets.length)];
-            }
-            creep.moveTo(34, 25, { visualizePathStyle: { stroke: '#ffffff' } })
-        }
-        if (creep.memory.target) {
-            var username = creep.memory.target.owner.username;
+        let targets = creep.room.find(FIND_HOSTILE_CREEPS);;
+        if (targets.length) {
+            console.log('I have a target', targets[0])
+            var username = targets[0].owner.username;
             Game.notify(`User ${username} spotted in room`);
-            creep.attack(creep.memory.target);
+            if (creep.attack(targets[0]) === ERR_NOT_IN_RANGE) {
+                creep.moveTo(targets[0], { visualizePathStyle: { stroke: '#ff0000' } })
+            }
+        } else {
+            creep.moveTo(20, 15, { visualizePathStyle: { stroke: '#ffffff' } })
         }
     }
 

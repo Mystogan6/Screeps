@@ -29,3 +29,9 @@
 ### V 1.2.0
 
 - Starting on pathfinderController
+
+## Jan, 29 - 2021
+
+### V 1.3.0
+
+- Adding attacker role
