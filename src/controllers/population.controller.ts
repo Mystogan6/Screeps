@@ -1,3 +1,4 @@
+import { AttackerController } from './../roles/attacker';
 import { BodyFactory } from './../utils/BodyFactory';
 import { DefenderController } from './../roles/defender';
 import { MaintainerController } from './../roles/maintainer';
@@ -27,6 +28,12 @@ export class PopulationController {
                 const creepToSpawn = { role: name };
                 popToSpawn.push(creepToSpawn)
             }
+            if (creeps.length === 0 && name === 'harvester') {
+                var newName = 'harvester' + Game.time;
+                console.log('Spawning new EMERGENCY harvester: ' + newName);
+                Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE, MOVE], newName,
+                    { memory: { role: 'harvester' } });
+            }
         }
         return popToSpawn;
     }
@@ -35,24 +42,28 @@ export class PopulationController {
 
         const bodyFactory = new BodyFactory(1);
         const workerBody = bodyFactory.generateBodyParts('worker');
-        const defendBody = bodyFactory.generateBodyParts('defend')
+        const defendBody = bodyFactory.generateBodyParts('defend');
+        const attackBody = bodyFactory.generateBodyParts('attack');
 
         creeps.forEach(creep => {
-            if(creep.role === 'harvester') {
+            if (creep.role === 'harvester') {
                 const harvesterController = new HarvesterController();
                 harvesterController.spawn(workerBody);
-            } if(creep.role === 'builder') {
+            } if (creep.role === 'builder') {
                 const builderController = new BuilderController();
                 builderController.spawn(workerBody);
-            } if(creep.role === 'upgrader') {
+            } if (creep.role === 'upgrader') {
                 const upgraderController = new UpgraderController();
                 upgraderController.spawn(workerBody);
-            } if(creep.role === 'maintainer') {
+            } if (creep.role === 'maintainer') {
                 const maintainerController = new MaintainerController();
                 maintainerController.spawn(workerBody);
-            } if(creep.role === 'defender') {
+            } if (creep.role === 'defender') {
                 const defenderController = new DefenderController();
                 defenderController.spawn(defendBody);
+            } if (creep.role === 'attacker') {
+                const attackerController = new AttackerController();
+                attackerController.spawn(attackBody);
             }
         });
     }

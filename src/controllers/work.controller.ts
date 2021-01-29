@@ -1,3 +1,4 @@
+import { AttackerController } from './../roles/attacker';
 import { DefenderController } from './../roles/defender';
 import { MaintainerController } from './../roles/maintainer';
 import { UpgraderController } from './../roles/upgrader';
@@ -10,6 +11,7 @@ export class WorkController {
     upgraderController: UpgraderController;
     maintainerController: MaintainerController;
     defenderController: DefenderController;
+    attackerController: AttackerController;
 
     constructor() {
         this.harvesterController = new HarvesterController();
@@ -17,12 +19,13 @@ export class WorkController {
         this.upgraderController = new UpgraderController();
         this.maintainerController = new MaintainerController();
         this.defenderController = new DefenderController();
+        this.attackerController = new AttackerController();
     }
 
     run() {
         for (const name in Memory.creeps) {
             var creep = Game.creeps[name];
-            switch(creep.memory.role) {
+            switch (creep.memory.role) {
                 case 'harvester':
                     this.harvesterController.run(creep)
                     break;
@@ -34,8 +37,13 @@ export class WorkController {
                     break;
                 case 'maintainer':
                     this.maintainerController.run(creep);
+                    break;
                 case 'defender':
                     this.defenderController.run(creep);
+                    break;
+                case 'attacker':
+                    this.attackerController.run(creep);
+                    break;
                 default:
                     break;
             }
