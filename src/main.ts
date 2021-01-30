@@ -5,12 +5,12 @@ import { PopulationController } from './controllers/population.controller';
 import { HelperFunctions } from './utils/HelperFunctions';
 
 const TARGET_POPULATION = {
-    harvester: 2,
-    builder: 2,
-    upgrader: 3,
-    maintainer: 0,
-    defender: 1,
-    attacker: 0
+  harvester: 2,
+  builder: 1,
+  upgrader: 3,
+  maintainer: 1,
+  defender: 2,
+  attacker: 0
 }
 
 const populationController = new PopulationController(TARGET_POPULATION);
@@ -28,6 +28,6 @@ export const loop = ErrorMapper.wrapLoop(() => {
 
   workController.run()
 
- // towerController.defend();
+  towerController.defend();
 
 });

@@ -14,22 +14,32 @@ export class MaintainerController {
         }
 
         if (creep.memory.building) {
-            var targets = creep.room.find(FIND_MY_STRUCTURES, {
+            let targets = creep.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
-                    return (structure.structureType == STRUCTURE_RAMPART) || (structure.structureType == STRUCTURE_TOWER &&
-                        structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0);
+                    return (structure.structureType == STRUCTURE_CONTAINER && structure.hits != structure.hitsMax);
                 }
             });
             if (targets.length) {
-                if (creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
+                if (creep.repair(targets[0]) === ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets[0], { visualizePathStyle: { stroke: '#ffffff' } });
+                }
+            } else {
+                targets = creep.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType != STRUCTURE_WALL && structure.hits != structure.hitsMax);
+                    }
+                });
+                if (targets.length) {
+                    if (creep.repair(targets[0]) === ERR_NOT_IN_RANGE) {
+                        creep.moveTo(targets[0], { visualizePathStyle: { stroke: '#ffffff' } });
+                    }
                 }
             }
         }
         else {
             var sources = creep.room.find(FIND_SOURCES);
-            if (creep.harvest(sources[1]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[1], { visualizePathStyle: { stroke: '#ffaa00' } });
+            if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(sources[0], { visualizePathStyle: { stroke: '#ffaa00' } });
             }
         }
     }

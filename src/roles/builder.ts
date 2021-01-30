@@ -28,8 +28,7 @@ export class BuilderController {
                 } else {
                     const targets = creep.room.find(FIND_STRUCTURES, {
                         filter: (structure) => {
-                            return (structure.structureType == STRUCTURE_RAMPART) || (structure.structureType == STRUCTURE_WALL && structure.hits !== structure.hitsMax) || (structure.structureType == STRUCTURE_TOWER &&
-                                structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0);
+                            return (structure.structureType == STRUCTURE_RAMPART) || (structure.structureType == STRUCTURE_WALL && structure.hits !== structure.hitsMax) || (structure.structureType == STRUCTURE_CONTAINER);
                         }
                     });
                     if (targets.length) {
