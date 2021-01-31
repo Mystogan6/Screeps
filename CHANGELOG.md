@@ -35,3 +35,11 @@
 ### V 1.3.0
 
 - Adding attacker role
+
+## Jan, 31 - 2021
+
+### V 2.0.0
+
+- Adding carrier role
+    * Creep in charge of harvesting all the time and transfer ressources to reserve
+- Changing all creeps behavior so they don't harvest sources, but only take energy from reserves

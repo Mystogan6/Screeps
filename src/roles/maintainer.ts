@@ -8,6 +8,7 @@ export class MaintainerController {
             creep.memory.building = false;
             creep.say('🔄 harvest');
         }
+
         if (!creep.memory.building && creep.store.getFreeCapacity() == 0) {
             creep.memory.building = true;
             creep.say('🚧 repair');
@@ -37,9 +38,15 @@ export class MaintainerController {
             }
         }
         else {
-            var sources = creep.room.find(FIND_SOURCES);
-            if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[0], { visualizePathStyle: { stroke: '#ffaa00' } });
+            const reserves = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+                filter: (structure) => {
+                    return (structure.structureType == STRUCTURE_CONTAINER && (structure.store.getUsedCapacity() > 0));
+                }
+            });
+            if (reserves) {
+                if (creep.withdraw(reserves, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(reserves, { visualizePathStyle: { stroke: '#ffaa00' } });
+                }
             }
         }
     }
