@@ -40,7 +40,7 @@ export class AttackerController {
         // First, kill creep that can attack
         let target: any = creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS, {
             filter: function (object) {
-                return object.getActiveBodyparts(ATTACK) == 0;
+                return object.getActiveBodyparts(ATTACK) >= 0;
             }
         });
         if (target) {

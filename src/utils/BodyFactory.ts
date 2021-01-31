@@ -68,7 +68,7 @@ export class BodyFactory {
             case 2:
                 return [TOUGH, TOUGH, ATTACK, MOVE];
             case 3:
-                return [MOVE, MOVE, MOVE, ATTACK, ATTACK, TOUGH, TOUGH, TOUGH, TOUGH];
+                return [ MOVE, MOVE, ATTACK, ATTACK, TOUGH, TOUGH, TOUGH, TOUGH];
             case 4:
                 return [TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, MOVE];
             case 5:

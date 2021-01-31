@@ -28,8 +28,7 @@ export class BuilderController {
                 } else {
                     const targets = creep.room.find(FIND_STRUCTURES, {
                         filter: (structure) => {
-                            return (structure.structureType == STRUCTURE_RAMPART) || (structure.structureType == STRUCTURE_WALL && structure.hits !== structure.hitsMax) || (structure.structureType == STRUCTURE_TOWER &&
-                                structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0);
+                            return (structure.structureType == STRUCTURE_RAMPART) || (structure.structureType == STRUCTURE_WALL && structure.hits !== structure.hitsMax) || (structure.structureType == STRUCTURE_CONTAINER);
                         }
                     });
                     if (targets.length) {
@@ -41,9 +40,15 @@ export class BuilderController {
             }
         }
         else {
-            var sources = creep.room.find(FIND_SOURCES);
-            if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[0], { visualizePathStyle: { stroke: '#ffaa00' } });
+            const reserves = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+                filter: (structure) => {
+                    return (structure.structureType == STRUCTURE_CONTAINER && (structure.store.getUsedCapacity() > 0));
+                }
+            });
+            if (reserves) {
+                if (creep.withdraw(reserves, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(reserves, { visualizePathStyle: { stroke: '#ffaa00' } });
+                }
             }
         }
     }

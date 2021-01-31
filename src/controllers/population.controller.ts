@@ -5,6 +5,7 @@ import { MaintainerController } from './../roles/maintainer';
 import { UpgraderController } from './../roles/upgrader';
 import { BuilderController } from './../roles/builder';
 import { HarvesterController } from './../roles/harvester';
+import { CarrierController } from 'roles/carrier';
 export class PopulationController {
 
     private _targetPopulation: any;
@@ -64,6 +65,9 @@ export class PopulationController {
             } if (creep.role === 'attacker') {
                 const attackerController = new AttackerController();
                 attackerController.spawn(attackBody);
+            } if (creep.role === 'carrier') {
+                const carrierController = new CarrierController();
+                carrierController.spawn(workerBody);
             }
         });
     }
