@@ -11,7 +11,7 @@ const TARGET_POPULATION = {
   maintainer: 1,
   defender: 1,
   attacker: 0,
-  carrier: 6
+  carrier: 3
 }
 
 const populationController = new PopulationController(TARGET_POPULATION);
