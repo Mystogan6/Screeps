@@ -16,6 +16,11 @@ export class HarvesterController {
                 if (creep.withdraw(reserves, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(reserves, { visualizePathStyle: { stroke: '#ffaa00' } });
                 }
+            } else {
+                const source: any = creep.pos.findClosestByPath(FIND_SOURCES);
+                if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(source, { visualizePathStyle: { stroke: '#ffaa00' } });
+                }
             }
         }
         else {

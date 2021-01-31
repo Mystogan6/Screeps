@@ -5,11 +5,11 @@ import { PopulationController } from './controllers/population.controller';
 import { HelperFunctions } from './utils/HelperFunctions';
 
 const TARGET_POPULATION = {
-  harvester: 1,
+  harvester: 2,
   builder: 1,
-  upgrader: 3,
+  upgrader: 2,
   maintainer: 1,
-  defender: 2,
+  defender: 1,
   attacker: 0,
   carrier: 6
 }
