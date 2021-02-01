@@ -28,7 +28,7 @@ export class BodyFactory {
             case 2:
                 return [WORK, CARRY, MOVE, MOVE, MOVE];
             case 3:
-                return [WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE];
+                return [WORK, WORK, CARRY, MOVE, MOVE, MOVE];
             case 4:
                 return [WORK, WORK, WORK, CARRY, CARRY, MOVE];
             case 5:

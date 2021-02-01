@@ -44,7 +44,7 @@ export class HarvesterController {
     spawn(body: any) {
         var newName = 'harvester' + Game.time;
         console.log('Spawning new harvester: ' + newName);
-        Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE], newName,
+        Game.spawns['Spawn1'].spawnCreep(body, newName,
             { memory: { role: 'harvester' } });
     }
 
