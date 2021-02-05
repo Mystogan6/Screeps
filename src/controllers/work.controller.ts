@@ -30,7 +30,7 @@ export class WorkController {
             var creep = Game.creeps[name];
             switch (creep.memory.role) {
                 case 'carrier':
-                    this.harvesterController.run(creep);
+                    this.carrrierController.run(creep);
                     break;
                 case 'harvester':
                     this.harvesterController.run(creep)
@@ -42,13 +42,16 @@ export class WorkController {
                     this.upgraderController.run(creep)
                     break;
                 case 'maintainer':
-                    this.harvesterController.run(creep);
+                    this.maintainerController.run(creep);
                     break;
                 case 'defender':
                     this.defenderController.run(creep);
                     break;
                 case 'attacker':
                     this.attackerController.run(creep);
+                    break;
+                case 'carrierTransition':
+                    this.carrrierController.runTransition(creep);
                     break;
                 default:
                     break;

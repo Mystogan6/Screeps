@@ -9,7 +9,6 @@ export class PathFinderController {
             creep.pos, goals,
             {
                 // We need to set the defaults costs higher so that we
-                // can set the road cost lower in `roomCallback`
                 plainCost: 2,
                 swampCost: 10,
 
@@ -18,7 +17,7 @@ export class PathFinderController {
                     let room = creep.room;
                     // In this example `room` will always exist, but since
                     // PathFinder supports searches which span multiple rooms
-                    // you should be careful!
+                    // to handle in next room controller iteration
                     if (!room) return;
                     let costs = new PathFinder.CostMatrix;
 

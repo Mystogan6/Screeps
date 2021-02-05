@@ -7,11 +7,12 @@ import { HelperFunctions } from './utils/HelperFunctions';
 const TARGET_POPULATION = {
   harvester: 2,
   builder: 1,
-  upgrader: 2,
+  upgrader: 6,
   maintainer: 1,
-  defender: 1,
+  defender: 2,
   attacker: 0,
-  carrier: 2
+  carrier: 3,
+  carrierTransition: 3
 }
 
 const populationController = new PopulationController(TARGET_POPULATION);

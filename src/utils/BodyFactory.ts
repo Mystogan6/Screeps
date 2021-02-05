@@ -3,7 +3,7 @@ export class BodyFactory {
     private level: any;
 
     constructor(level: any) {
-        this.level = 3;
+        this.level = 4;
     }
 
     generateBodyParts(role: any): any {
@@ -28,9 +28,9 @@ export class BodyFactory {
             case 2:
                 return [WORK, CARRY, MOVE, MOVE, MOVE];
             case 3:
-                return [WORK, WORK, CARRY, MOVE, MOVE, MOVE];
+                return [WORK, WORK, CARRY, CARRY, MOVE, MOVE];
             case 4:
-                return [WORK, WORK, WORK, CARRY, CARRY, MOVE];
+                return [WORK, WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE];
             case 5:
                 return [WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE];
             case 6:
@@ -50,7 +50,7 @@ export class BodyFactory {
             case 3:
                 return [TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, ATTACK, MOVE, MOVE, MOVE];
             case 4:
-                return [TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, MOVE];
+                return [TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, ATTACK, RANGED_ATTACK, MOVE, MOVE];
             case 5:
                 return [TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, ATTACK, MOVE];
             case 6:
@@ -70,7 +70,7 @@ export class BodyFactory {
             case 3:
                 return [ MOVE, MOVE, ATTACK, ATTACK, TOUGH, TOUGH, TOUGH, TOUGH];
             case 4:
-                return [TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, MOVE];
+                return [TOUGH, TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, ATTACK, MOVE, MOVE, MOVE, MOVE];;
             case 5:
                 return [TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, ATTACK, MOVE];
             case 6:

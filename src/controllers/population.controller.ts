@@ -68,6 +68,9 @@ export class PopulationController {
             } if (creep.role === 'carrier') {
                 const carrierController = new CarrierController();
                 carrierController.spawn(workerBody);
+            } if (creep.role === 'carrierTransition') {
+                const carrierController = new CarrierController();
+                carrierController.spawn(workerBody, true);
             }
         });
     }

@@ -9,7 +9,9 @@ export class HarvesterController {
         if (creep.store.getFreeCapacity() > 0) {
             const reserves = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                 filter: (structure) => {
-                    return (structure.structureType == STRUCTURE_CONTAINER && (structure.store.getUsedCapacity() > 0));
+                    return ((structure.structureType == STRUCTURE_STORAGE && (structure.store.getUsedCapacity() > 0))
+                            || structure.structureType == STRUCTURE_CONTAINER && (structure.store.getUsedCapacity() > 0)
+                    );
                 }
             });
             if (reserves) {
@@ -35,7 +37,7 @@ export class HarvesterController {
                     creep.moveTo(targets[0], { visualizePathStyle: { stroke: '#ffffff' } });
                 }
             } else {
-                creep.moveTo(33, 13, { visualizePathStyle: { stroke: '#0000ff' } });
+                creep.moveTo(31, 11, { visualizePathStyle: { stroke: '#0000ff' } });
             }
 
         }
@@ -44,7 +46,7 @@ export class HarvesterController {
     spawn(body: any) {
         var newName = 'harvester' + Game.time;
         console.log('Spawning new harvester: ' + newName);
-        Game.spawns['Spawn1'].spawnCreep(body, newName,
+        Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE, MOVE, MOVE, MOVE], newName,
             { memory: { role: 'harvester' } });
     }
 
