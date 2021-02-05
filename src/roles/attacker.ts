@@ -5,9 +5,9 @@ export class AttackerController {
     constructor() { }
     /** @param {Creep} creep **/
     run(creep: Creep): void {
-        if (creep.room.name != 'E26S48') {
+        if (creep.room.name != 'E28S48') {
             console.log("Not in the right room")
-            const exitDir: any = Game.map.findExit(creep.room, 'E26S48');
+            const exitDir: any = Game.map.findExit(creep.room, 'E28S48');
             const exit: any = creep.pos.findClosestByRange(exitDir);
             creep.moveTo(exit, { visualizePathStyle: { stroke: '#0000ff' } });
             console.log("going to closest exit: ", JSON.stringify(exit))
@@ -31,7 +31,7 @@ export class AttackerController {
                 creep.moveTo(target, { visualizePathStyle: { stroke: '#ff0000' } })
             }
         } else {
-            creep.moveTo(10, 5, { visualizePathStyle: { stroke: '#ffffff' } })
+            creep.moveTo(22, 10, { visualizePathStyle: { stroke: '#ffffff' } })
         }
     }
 

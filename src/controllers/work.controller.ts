@@ -50,6 +50,9 @@ export class WorkController {
                 case 'attacker':
                     this.attackerController.run(creep);
                     break;
+                case 'carrierTransition':
+                    this.carrrierController.runTransition(creep);
+                    break;
                 default:
                     break;
             }
