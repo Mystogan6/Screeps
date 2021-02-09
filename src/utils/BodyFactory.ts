@@ -3,7 +3,7 @@ export class BodyFactory {
     private level: any;
 
     constructor(level: any) {
-        this.level = 4;
+        this.level = level;
     }
 
     generateBodyParts(role: any): any {
@@ -30,7 +30,7 @@ export class BodyFactory {
             case 3:
                 return [WORK, WORK, CARRY, CARRY, MOVE, MOVE];
             case 4:
-                return [WORK, WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE];
+                return [WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE];
             case 5:
                 return [WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE];
             case 6:

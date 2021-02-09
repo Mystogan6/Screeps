@@ -8,24 +8,22 @@ import { HarvesterController } from './../roles/harvester';
 import { CarrierController } from 'roles/carrier';
 export class PopulationController {
 
-    private _targetPopulation: any;
 
-    constructor(targetPopulation: any) {
-        this._targetPopulation = targetPopulation;
+    constructor() {
     }
 
-    controlPopulation(): void {
-        const spawnList = this.creepsToSpawn();
+    controlPopulation(targetPop: any, level: any): void {
+        const spawnList = this.creepsToSpawn(targetPop);
         if (spawnList.length) {
-            this.spawnCreeps(spawnList);
+            this.spawnCreeps(spawnList, level);
         }
     }
 
-    private creepsToSpawn() {
+    private creepsToSpawn(targetPop: any) {
         const popToSpawn: any = [];
-        for (const name in this._targetPopulation) {
+        for (const name in targetPop) {
             const creeps = _.filter(Game.creeps, (creep) => creep.memory.role == name);
-            if (creeps.length < this._targetPopulation[name]) {
+            if (creeps.length < targetPop[name]) {
                 const creepToSpawn = { role: name };
                 popToSpawn.push(creepToSpawn)
             }
@@ -39,9 +37,9 @@ export class PopulationController {
         return popToSpawn;
     }
 
-    private spawnCreeps(creeps: Array<any>) {
+    private spawnCreeps(creeps: Array<any>, level: any) {
 
-        const bodyFactory = new BodyFactory(1);
+        const bodyFactory = new BodyFactory(level);
         const workerBody = bodyFactory.generateBodyParts('worker');
         const defendBody = bodyFactory.generateBodyParts('defend');
         const attackBody = bodyFactory.generateBodyParts('attack');

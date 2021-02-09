@@ -43,3 +43,9 @@
 - Adding carrier role
     * Creep in charge of harvesting all the time and transfer ressources to reserve
 - Changing all creeps behavior so they don't harvest sources, but only take energy from reserves
+
+## Feb, 09 - 2021
+
+### V 3.0.0
+
+- Adding possibility to control multiple rooms
