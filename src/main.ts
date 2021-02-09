@@ -7,32 +7,36 @@ import { HelperFunctions } from './utils/HelperFunctions';
 
 const ROOMS = [{
   name: 'E26S49',
-  level: 4,
+  level: 5,
   targetPop: {
     harvester: 2,
     builder: 1,
-    upgrader: 4,
+    upgrader: 3,
     maintainer: 1,
     defender: 2,
     attacker: 0,
     carrier: 2,
-    carrierTransition: 2
-  }
-}/* ,
+    carrierTransition: 1,
+    claimer: 0
+  },
+  spawn: 'Spawn1'
+},
 {
-  name: '',
-  level: 1,
+  name: 'E26S48',
+  level: 2,
   targetPop: {
     harvester: 2,
     builder: 1,
-    upgrader: 4,
+    upgrader: 3,
     maintainer: 1,
-    defender: 2,
+    defender: 0,
     attacker: 0,
-    carrier: 2,
-    carrierTransition: 2
-  }
-} */];
+    carrier: 0,
+    carrierTransition: 0,
+    claimer: 0
+  },
+  spawn: 'Spawn2'
+}];
 
 const populationController = new PopulationController();
 const workController = new WorkController();

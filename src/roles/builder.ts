@@ -14,7 +14,8 @@ export class BuilderController {
         }
 
         if (creep.memory.building) {
-            const priorityRepair = Game.spawns['Spawn1'];
+            const currentRoom = creep.room.name === 'E26S49' ? 'Spawn1' : 'Spawn2';
+            const priorityRepair = Game.spawns[currentRoom];
             if (priorityRepair.hits != priorityRepair.hitsMax) {
                 if (creep.repair(priorityRepair) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(priorityRepair, { visualizePathStyle: { stroke: '#00ff00' } });
@@ -49,14 +50,20 @@ export class BuilderController {
                 if (creep.withdraw(reserves, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(reserves, { visualizePathStyle: { stroke: '#ffaa00' } });
                 }
+            } else {
+                const source: any = creep.pos.findClosestByRange(FIND_SOURCES);
+                if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(source, { visualizePathStyle: { stroke: '#ffaa00' } });
+                }
             }
         }
     }
 
-    spawn(body: any) {
+    spawn(body: any, spawn: any) {
         var newName = 'builder' + Game.time;
-        console.log('Spawning new builder: ' + newName);
-        Game.spawns['Spawn1'].spawnCreep(body, newName,
-            { memory: { role: 'builder' } });
+        console.log('Spawning new builder: ' + newName + ' For spawn: ' + spawn);
+        const currentRoom = spawn === 'Spawn1' ? 'E26S49' : 'E26S48';
+        Game.spawns[spawn].spawnCreep(body, newName,
+            { memory: { role: 'builder', room: currentRoom } });
     }
 }

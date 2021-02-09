@@ -18,10 +18,11 @@ export class DefenderController {
         }
     }
 
-    spawn(body: any) {
+    spawn(body: any, spawn: any) {
         var newName = 'Defender' + Game.time;
-        console.log('Spawning new defender: ' + newName);
-        Game.spawns['Spawn1'].spawnCreep(body, newName,
-            { memory: { role: 'defender' } });
+        console.log('Spawning new defender: ' + newName + ' For spawn: ' + spawn);
+        const currentRoom = spawn === 'Spawn1' ? 'E26S49' : 'E26S48';
+        Game.spawns[spawn].spawnCreep(body, newName,
+            { memory: { role: 'defender', room: currentRoom } });
     }
 }

@@ -10,9 +10,9 @@ export class BodyFactory {
         let result: any;
         switch (role) {
             case 'worker':
-               return result = this.generateWorkerBody();
+                return result = this.generateWorkerBody();
             case 'defend':
-               return result = this.generateMillitaryBody();
+                return result = this.generateMillitaryBody();
             case 'attack':
                 return result = this.generateAttackerBody();
             default:
@@ -32,7 +32,9 @@ export class BodyFactory {
             case 4:
                 return [WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE];
             case 5:
-                return [WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE];
+                return [WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK,
+                    CARRY, CARRY, CARRY, CARRY, CARRY, CARRY,
+                    MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
             case 6:
                 return [WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE];
             case 7:
@@ -52,7 +54,10 @@ export class BodyFactory {
             case 4:
                 return [TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, ATTACK, RANGED_ATTACK, MOVE, MOVE];
             case 5:
-                return [TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, ATTACK, MOVE];
+                return [TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH,
+                    ATTACK, ATTACK, ATTACK,
+                    RANGED_ATTACK, RANGED_ATTACK,
+                    MOVE, MOVE, MOVE, MOVE];
             case 6:
                 return [TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, ATTACK, MOVE, MOVE];
             case 7:
@@ -68,7 +73,7 @@ export class BodyFactory {
             case 2:
                 return [TOUGH, TOUGH, ATTACK, MOVE];
             case 3:
-                return [ MOVE, MOVE, ATTACK, ATTACK, TOUGH, TOUGH, TOUGH, TOUGH];
+                return [MOVE, MOVE, ATTACK, ATTACK, TOUGH, TOUGH, TOUGH, TOUGH];
             case 4:
                 return [TOUGH, TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, ATTACK, MOVE, MOVE, MOVE, MOVE];;
             case 5:

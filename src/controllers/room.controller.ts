@@ -16,7 +16,7 @@ export class RoomController {
     }
 
     private handleSpawn(room: any) {
-        this._popController.controlPopulation(room.targetPop, room.level);
+        this._popController.controlPopulation(room.targetPop, room.level, room.spawn, room.name);
     }
 
 

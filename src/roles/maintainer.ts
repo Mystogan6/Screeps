@@ -51,10 +51,11 @@ export class MaintainerController {
         }
     }
 
-    spawn(body: any) {
+    spawn(body: any, spawn: any) {
         var newName = 'maintainer' + Game.time;
-        console.log('Spawning new maintainer: ' + newName);
-        Game.spawns['Spawn1'].spawnCreep(body, newName,
-            { memory: { role: 'maintainer' } });
+        console.log('Spawning new harvester: ' + newName + ' For spawn: ' + spawn);
+        const currentRoom = spawn === 'Spawn1' ? 'E26S49' : 'E26S48';
+        Game.spawns[spawn].spawnCreep(body, newName,
+            { memory: { role: 'maintainer', room: currentRoom } });
     }
 }

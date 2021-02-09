@@ -49,3 +49,10 @@
 ### V 3.0.0
 
 - Adding possibility to control multiple rooms
+
+### V 3.1.0
+
+- Expending territory to a new room
+    * Adding claimer role
+    * Constructing new spawn
+    * Relocating defense creep to new room

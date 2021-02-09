@@ -5,9 +5,9 @@ export class AttackerController {
     constructor() { }
     /** @param {Creep} creep **/
     run(creep: Creep): void {
-        if (creep.room.name != 'E28S48') {
+        if (creep.room.name != 'E26S48') {
             console.log("Not in the right room")
-            const exitDir: any = Game.map.findExit(creep.room, 'E28S48');
+            const exitDir: any = Game.map.findExit(creep.room, 'E26S48');
             const exit: any = creep.pos.findClosestByRange(exitDir);
             creep.moveTo(exit, { visualizePathStyle: { stroke: '#0000ff' } });
             console.log("going to closest exit: ", JSON.stringify(exit))
@@ -17,11 +17,12 @@ export class AttackerController {
 
     }
 
-    spawn(body: any) {
+    spawn(body: any, spawn: any) {
         var newName = 'Attacker' + Game.time;
         console.log('Spawning new attacker: ' + newName);
-        Game.spawns['Spawn1'].spawnCreep(body, newName,
-            { memory: { role: 'attacker' } });
+        const currentRoom = spawn === 'Spawn1' ? 'E26S49' : 'E26S48';
+        Game.spawns[spawn].spawnCreep(body, newName,
+            { memory: { role: 'attacker', room: currentRoom } });
     }
 
     attack(creep: Creep) {
@@ -31,7 +32,7 @@ export class AttackerController {
                 creep.moveTo(target, { visualizePathStyle: { stroke: '#ff0000' } })
             }
         } else {
-            creep.moveTo(22, 10, { visualizePathStyle: { stroke: '#ffffff' } })
+            creep.moveTo(20, 24, { visualizePathStyle: { stroke: '#ffffff' } })
         }
     }
 
