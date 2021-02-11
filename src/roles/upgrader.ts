@@ -29,14 +29,20 @@ export class UpgraderController {
                 if (creep.withdraw(reserves, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(reserves, { visualizePathStyle: { stroke: '#ffaa00' } });
                 }
+            } else {
+                const source: any = creep.pos.findClosestByPath(FIND_SOURCES);
+                if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(source, { visualizePathStyle: { stroke: '#ffaa00' } });
+                }
             }
         }
     }
 
-    spawn(body: any) {
+    spawn(body: any, spawn: any) {
         var newName = 'upgrader' + Game.time;
-        console.log('Spawning new upgrader: ' + newName);
-        Game.spawns['Spawn1'].spawnCreep(body, newName,
-            { memory: { role: 'upgrader' } });
+        console.log('Spawning new harvester: ' + newName + ' For spawn: ' + spawn);
+        const currentRoom = spawn === 'Spawn1' ? 'E26S49' : 'E26S48';
+        Game.spawns[spawn].spawnCreep(body, newName,
+            { memory: { role: 'upgrader', room: currentRoom } });
     }
 }

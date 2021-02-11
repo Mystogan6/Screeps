@@ -1,3 +1,4 @@
+import { ClaimerController } from './../roles/claimer';
 import { AttackerController } from './../roles/attacker';
 import { DefenderController } from './../roles/defender';
 import { MaintainerController } from './../roles/maintainer';
@@ -14,6 +15,7 @@ export class WorkController {
     defenderController: DefenderController;
     attackerController: AttackerController;
     carrrierController: CarrierController;
+    claimerController: ClaimerController;
 
     constructor() {
         this.harvesterController = new HarvesterController();
@@ -23,6 +25,7 @@ export class WorkController {
         this.defenderController = new DefenderController();
         this.attackerController = new AttackerController();
         this.carrrierController = new CarrierController();
+        this.claimerController = new ClaimerController();
     }
 
     run() {
@@ -45,13 +48,16 @@ export class WorkController {
                     this.maintainerController.run(creep);
                     break;
                 case 'defender':
-                    this.defenderController.run(creep);
+                    this.attackerController.run(creep);
                     break;
                 case 'attacker':
                     this.attackerController.run(creep);
                     break;
                 case 'carrierTransition':
                     this.carrrierController.runTransition(creep);
+                    break;
+                case 'claimer':
+                    this.claimerController.run(creep);
                     break;
                 default:
                     break;

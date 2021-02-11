@@ -25,8 +25,8 @@ export class CarrierController {
                 }
             } else {
                 const targets = creep.room.find(FIND_STRUCTURES, {
-                    filter: (structure:any) => {
-                        return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN || structure.structureType == STRUCTURE_TOWER || structure.structureType == STRUCTURE_CONTAINER) &&
+                    filter: (structure: any) => {
+                        return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN || structure.structureType == STRUCTURE_TOWER || structure.structureType == STRUCTURE_STORAGE) &&
                             structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
                     }
                 });
@@ -78,20 +78,20 @@ export class CarrierController {
         }
     }
 
-    spawn(body: any, transition?: boolean) {
+    spawn(body: any, spawn: any, transition?: boolean) {
+        const currentRoom = spawn === 'Spawn1' ? 'E26S49' : 'E26S48';
         var newName = 'Carrier' + Game.time;
-        var sources = Game.rooms['E26S49'].find(FIND_SOURCES);
+        var sources = Game.rooms[currentRoom].find(FIND_SOURCES);
         let randomSource;
-        if(transition) {
-            console.log('Spawning new carrierTransition: ' + newName);
+        console.log('Spawning new carrier: ' + newName + ' For spawn: ' + spawn);
+        if (transition) {
             randomSource = sources[1];
-            Game.spawns['Spawn1'].spawnCreep(body, newName,
-                { memory: { role: 'carrierTransition', source: randomSource.id } });
+            Game.spawns[spawn].spawnCreep(body, newName,
+                { memory: { role: 'carrierTransition', source: randomSource.id, room: currentRoom } });
         } else {
-            console.log('Spawning new carrier: ' + newName);
-            randomSource = sources[0];
-            Game.spawns['Spawn1'].spawnCreep(body, newName,
-                { memory: { role: 'carrier', source: randomSource.id } });
+            randomSource = spawn === 'Spawn1' ? sources[0] : sources[HelperFunctions.randomNumber(2)];
+            Game.spawns[spawn].spawnCreep(body, newName,
+                { memory: { role: 'carrier', source: randomSource.id, room: currentRoom } });
         }
     }
 

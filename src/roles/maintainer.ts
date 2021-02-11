@@ -47,14 +47,20 @@ export class MaintainerController {
                 if (creep.withdraw(reserves, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(reserves, { visualizePathStyle: { stroke: '#ffaa00' } });
                 }
+            } else {
+                const source: any = creep.room.find(FIND_SOURCES);
+                if (creep.harvest(source[1]) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(source[1], { visualizePathStyle: { stroke: '#ffaa00' } });
+                }
             }
         }
     }
 
-    spawn(body: any) {
+    spawn(body: any, spawn: any) {
         var newName = 'maintainer' + Game.time;
-        console.log('Spawning new maintainer: ' + newName);
-        Game.spawns['Spawn1'].spawnCreep(body, newName,
-            { memory: { role: 'maintainer' } });
+        console.log('Spawning new harvester: ' + newName + ' For spawn: ' + spawn);
+        const currentRoom = spawn === 'Spawn1' ? 'E26S49' : 'E26S48';
+        Game.spawns[spawn].spawnCreep(body, newName,
+            { memory: { role: 'maintainer', room: currentRoom } });
     }
 }

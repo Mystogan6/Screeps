@@ -10,7 +10,7 @@ export class HarvesterController {
             const reserves = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return ((structure.structureType == STRUCTURE_STORAGE && (structure.store.getUsedCapacity() > 0))
-                            || structure.structureType == STRUCTURE_CONTAINER && (structure.store.getUsedCapacity() > 0)
+                        || structure.structureType == STRUCTURE_CONTAINER && (structure.store.getUsedCapacity() > 0)
                     );
                 }
             });
@@ -19,9 +19,9 @@ export class HarvesterController {
                     creep.moveTo(reserves, { visualizePathStyle: { stroke: '#ffaa00' } });
                 }
             } else {
-                const source: any = creep.pos.findClosestByPath(FIND_SOURCES);
-                if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(source, { visualizePathStyle: { stroke: '#ffaa00' } });
+                const source: any = creep.room.find(FIND_SOURCES);
+                if (creep.harvest(source[1]) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(source[1], { visualizePathStyle: { stroke: '#ffaa00' } });
                 }
             }
         }
@@ -37,17 +37,19 @@ export class HarvesterController {
                     creep.moveTo(targets[0], { visualizePathStyle: { stroke: '#ffffff' } });
                 }
             } else {
-                creep.moveTo(31, 11, { visualizePathStyle: { stroke: '#0000ff' } });
+                creep.moveTo(14, 16, { visualizePathStyle: { stroke: '#0000ff' } });
             }
 
         }
     }
 
-    spawn(body: any) {
+    spawn(body: any, spawn: any) {
         var newName = 'harvester' + Game.time;
-        console.log('Spawning new harvester: ' + newName);
-        Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE, MOVE, MOVE, MOVE], newName,
-            { memory: { role: 'harvester' } });
+        console.log('Spawning new harvester: ' + newName + ' For spawn: ' + spawn);
+        const currentRoom = spawn === 'Spawn1' ? 'E26S49' : 'E26S48';
+        const harvestBod = spawn === 'Spawn1' ? [WORK, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE] : [WORK, CARRY, MOVE, MOVE, MOVE]
+        Game.spawns[spawn].spawnCreep(harvestBod, newName,
+            { memory: { role: 'harvester', room: currentRoom } });
     }
 
 }
