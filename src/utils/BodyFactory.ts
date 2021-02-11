@@ -28,12 +28,12 @@ export class BodyFactory {
             case 2:
                 return [WORK, CARRY, MOVE, MOVE, MOVE];
             case 3:
-                return [WORK, WORK, CARRY, CARRY, MOVE, MOVE];
+                return [WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE];
             case 4:
                 return [WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE];
             case 5:
-                return [WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK,
-                    CARRY, CARRY, CARRY, CARRY, CARRY, CARRY,
+                return [WORK, WORK, WORK, WORK, WORK, WORK, WORK,
+                    CARRY, CARRY, CARRY, CARRY, CARRY,
                     MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
             case 6:
                 return [WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE];

@@ -16,22 +16,22 @@ const ROOMS = [{
     defender: 2,
     attacker: 0,
     carrier: 2,
-    carrierTransition: 1,
+    carrierTransition: 2,
     claimer: 0
   },
   spawn: 'Spawn1'
 },
 {
   name: 'E26S48',
-  level: 2,
+  level: 3,
   targetPop: {
     harvester: 2,
-    builder: 1,
+    builder: 0,
     upgrader: 3,
     maintainer: 1,
     defender: 0,
     attacker: 0,
-    carrier: 0,
+    carrier: 4,
     carrierTransition: 0,
     claimer: 0
   },

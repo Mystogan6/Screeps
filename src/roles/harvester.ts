@@ -20,8 +20,8 @@ export class HarvesterController {
                 }
             } else {
                 const source: any = creep.room.find(FIND_SOURCES);
-                if (creep.harvest(source[0]) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(source[0], { visualizePathStyle: { stroke: '#ffaa00' } });
+                if (creep.harvest(source[1]) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(source[1], { visualizePathStyle: { stroke: '#ffaa00' } });
                 }
             }
         }
@@ -47,7 +47,7 @@ export class HarvesterController {
         var newName = 'harvester' + Game.time;
         console.log('Spawning new harvester: ' + newName + ' For spawn: ' + spawn);
         const currentRoom = spawn === 'Spawn1' ? 'E26S49' : 'E26S48';
-        const harvestBod = spawn === 'Spawn1' ? [WORK, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE] : [WORK, CARRY, MOVE]
+        const harvestBod = spawn === 'Spawn1' ? [WORK, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE] : [WORK, CARRY, MOVE, MOVE, MOVE]
         Game.spawns[spawn].spawnCreep(harvestBod, newName,
             { memory: { role: 'harvester', room: currentRoom } });
     }

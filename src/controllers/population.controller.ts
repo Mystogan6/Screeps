@@ -66,7 +66,7 @@ export class PopulationController {
                 attackerController.spawn(attackBody, spawn);
             } if (creep.role === 'carrier') {
                 const carrierController = new CarrierController();
-                carrierController.spawn(workerBody, spawn);
+                carrierController.spawn(workerBody, spawn, false);
             } if (creep.role === 'carrierTransition') {
                 const carrierController = new CarrierController();
                 carrierController.spawn(workerBody, spawn, true);

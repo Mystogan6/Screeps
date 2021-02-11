@@ -79,17 +79,17 @@ export class CarrierController {
     }
 
     spawn(body: any, spawn: any, transition?: boolean) {
+        const currentRoom = spawn === 'Spawn1' ? 'E26S49' : 'E26S48';
         var newName = 'Carrier' + Game.time;
-        var sources = Game.rooms['E26S49'].find(FIND_SOURCES);
+        var sources = Game.rooms[currentRoom].find(FIND_SOURCES);
         let randomSource;
         console.log('Spawning new carrier: ' + newName + ' For spawn: ' + spawn);
-        const currentRoom = spawn === 'Spawn1' ? 'E26S49' : 'E26S48';
         if (transition) {
             randomSource = sources[1];
             Game.spawns[spawn].spawnCreep(body, newName,
                 { memory: { role: 'carrierTransition', source: randomSource.id, room: currentRoom } });
         } else {
-            randomSource = sources[0];
+            randomSource = spawn === 'Spawn1' ? sources[0] : sources[HelperFunctions.randomNumber(2)];
             Game.spawns[spawn].spawnCreep(body, newName,
                 { memory: { role: 'carrier', source: randomSource.id, room: currentRoom } });
         }
