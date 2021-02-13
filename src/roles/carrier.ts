@@ -85,11 +85,11 @@ export class CarrierController {
         let randomSource;
         console.log('Spawning new carrier: ' + newName + ' For spawn: ' + spawn);
         if (transition) {
-            randomSource = sources[1];
+            randomSource = spawn === 'Spawn1' ? sources[1] : sources[0];
             Game.spawns[spawn].spawnCreep(body, newName,
                 { memory: { role: 'carrierTransition', source: randomSource.id, room: currentRoom } });
         } else {
-            randomSource = spawn === 'Spawn1' ? sources[0] : sources[HelperFunctions.randomNumber(2)];
+            randomSource = spawn === 'Spawn1' ? sources[0] : sources[1];
             Game.spawns[spawn].spawnCreep(body, newName,
                 { memory: { role: 'carrier', source: randomSource.id, room: currentRoom } });
         }

@@ -12,7 +12,7 @@ const ROOMS = [{
     harvester: 2,
     builder: 1,
     upgrader: 3,
-    maintainer: 1,
+    maintainer: 2,
     defender: 2,
     attacker: 0,
     carrier: 2,
@@ -26,13 +26,13 @@ const ROOMS = [{
   level: 3,
   targetPop: {
     harvester: 2,
-    builder: 0,
+    builder: 1,
     upgrader: 3,
     maintainer: 1,
     defender: 0,
     attacker: 0,
-    carrier: 4,
-    carrierTransition: 0,
+    carrier: 3,
+    carrierTransition: 3,
     claimer: 0
   },
   spawn: 'Spawn2'
