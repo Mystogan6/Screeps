@@ -9,9 +9,7 @@ export class HarvesterController {
         if (creep.store.getFreeCapacity() > 0) {
             const reserves = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                 filter: (structure) => {
-                    return ((structure.structureType == STRUCTURE_STORAGE && (structure.store.getUsedCapacity() > 0))
-                        || structure.structureType == STRUCTURE_CONTAINER && (structure.store.getUsedCapacity() > 0)
-                    );
+                    return ((structure.structureType == STRUCTURE_STORAGE && (structure.store.getUsedCapacity() > 0)));
                 }
             });
             if (reserves) {

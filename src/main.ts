@@ -23,7 +23,7 @@ const ROOMS = [{
 },
 {
   name: 'E26S48',
-  level: 3,
+  level: 4,
   targetPop: {
     harvester: 2,
     builder: 1,
