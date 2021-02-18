@@ -33,7 +33,7 @@ export class BodyFactory {
                 return [WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE];
             case 5:
                 return [WORK, WORK, WORK, WORK, WORK, WORK, WORK,
-                    CARRY, CARRY, CARRY, CARRY, CARRY,
+                    CARRY, CARRY, CARRY, CARRY,
                     MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
             case 6:
                 return [WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE];
@@ -52,7 +52,7 @@ export class BodyFactory {
             case 3:
                 return [TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, ATTACK, MOVE, MOVE, MOVE];
             case 4:
-                return [TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, ATTACK, RANGED_ATTACK, MOVE, MOVE];
+                return [TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, ATTACK, MOVE, MOVE];
             case 5:
                 return [TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH,
                     ATTACK, ATTACK, ATTACK,
@@ -77,7 +77,9 @@ export class BodyFactory {
             case 4:
                 return [TOUGH, TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, ATTACK, MOVE, MOVE, MOVE, MOVE];;
             case 5:
-                return [TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, ATTACK, MOVE];
+                return [TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH,
+                    ATTACK, ATTACK, ATTACK,
+                    MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
             case 6:
                 return [TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, ATTACK, MOVE, MOVE];
             case 7:

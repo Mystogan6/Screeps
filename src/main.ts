@@ -12,7 +12,7 @@ const ROOMS = [{
     harvester: 2,
     builder: 1,
     upgrader: 3,
-    maintainer: 2,
+    maintainer: 1,
     defender: 2,
     attacker: 0,
     carrier: 2,
@@ -26,7 +26,7 @@ const ROOMS = [{
   level: 4,
   targetPop: {
     harvester: 2,
-    builder: 1,
+    builder: 0,
     upgrader: 3,
     maintainer: 1,
     defender: 0,
@@ -54,6 +54,7 @@ export const loop = ErrorMapper.wrapLoop(() => {
 
   workController.run();
 
-  towerController.defend();
+  towerController.defend('E26S49');
+  towerController.defend('E26S48');
 
 });

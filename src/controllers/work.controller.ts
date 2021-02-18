@@ -48,7 +48,7 @@ export class WorkController {
                     this.maintainerController.run(creep);
                     break;
                 case 'defender':
-                    this.attackerController.run(creep);
+                    this.defenderController.run(creep);
                     break;
                 case 'attacker':
                     this.attackerController.run(creep);
